@@ -27,11 +27,7 @@ public class UserServiceImpl implements UserService {
 	public List<UserDto> getUsers() {
 		// TODO 自動生成されたメソッド・スタブ
 		List<UserDto> users = new ArrayList<UserDto>();
-		userRepository.findAll().forEach(user -> {
-			UserDto userDto = new UserDto(user.getUserId(), user.getEmail(), user.getDisplayName(),
-					user.getCreatedAt(), user.getUpdatedAt());
-			users.add(userDto);
-		});
+		userRepository.findAll().forEach(user -> users.add(userMapper.toDto(user)));
 		return users;
 	}
 
