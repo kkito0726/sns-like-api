@@ -11,5 +11,5 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class BaseDto {
 	private LocalDateTime createdAt;
-	private LocalDateTime updatedATime;
+	private LocalDateTime updatedAt;
 }
