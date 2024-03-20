@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 import com.ken.snsLike.dtos.post.CreatePostDto;
 import com.ken.snsLike.dtos.post.PostDto;
 import com.ken.snsLike.dtos.post.UpdatePostDto;
+import com.ken.snsLike.error.NotFoundException;
 import com.ken.snsLike.mapper.PostMapper;
 import com.ken.snsLike.models.Post;
 import com.ken.snsLike.repository.PostRepository;
@@ -68,6 +69,9 @@ public class PostServiceImpl implements PostService {
 
 	private Post _findPost(UUID postId) {
 		Optional<Post> found = postRepository.findById(postId);
+		if (found.isEmpty()) {
+			throw new NotFoundException(postId);
+		}
 		return found.get();
 	}
 }

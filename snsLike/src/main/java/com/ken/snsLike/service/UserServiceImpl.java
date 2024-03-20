@@ -3,6 +3,7 @@ package com.ken.snsLike.service;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
+import java.util.Optional;
 import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,6 +12,7 @@ import org.springframework.stereotype.Service;
 import com.ken.snsLike.dtos.user.CreateUserDto;
 import com.ken.snsLike.dtos.user.UpdateUserDto;
 import com.ken.snsLike.dtos.user.UserDto;
+import com.ken.snsLike.error.NotFoundException;
 import com.ken.snsLike.mapper.UserMapper;
 import com.ken.snsLike.models.User;
 import com.ken.snsLike.repository.UserRepository;
@@ -33,7 +35,7 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public UserDto getUserByUserId(UUID userId) {
-		User user = userRepository.findById(userId).get();
+		User user = _findUserById(userId);
 		return userMapper.toDto(user);
 	}
 
@@ -46,7 +48,7 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public UserDto updateUser(UUID userId, UpdateUserDto user) {
-		User found = userRepository.findById(userId).get();
+		User found = _findUserById(userId);
 		if (Objects.nonNull(user.getEmail())) {
 			found.setEmail(user.getEmail());
 		}
@@ -66,5 +68,13 @@ public class UserServiceImpl implements UserService {
 		UserDto userDto = getUserByUserId(userId);
 		userRepository.deleteById(userId);
 		return userDto;
+	}
+
+	private User _findUserById(UUID userId) {
+		Optional<User> found = userRepository.findById(userId);
+		if (found.isEmpty()) {
+			throw new NotFoundException(userId);
+		}
+		return found.get();
 	}
 }
