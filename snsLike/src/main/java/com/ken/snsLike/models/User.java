@@ -16,7 +16,7 @@ import lombok.NoArgsConstructor;
 
 @Entity(name = "user")
 @Data
-@EqualsAndHashCode(callSuper = false)
+@EqualsAndHashCode(callSuper = true)
 @NoArgsConstructor
 @AllArgsConstructor
 public class User extends EntityBase {

@@ -16,7 +16,7 @@ import lombok.NoArgsConstructor;
 
 @Entity(name = "post")
 @Data
-@EqualsAndHashCode(callSuper = false)
+@EqualsAndHashCode(callSuper = true)
 @NoArgsConstructor
 @AllArgsConstructor
 public class Post extends EntityBase {
