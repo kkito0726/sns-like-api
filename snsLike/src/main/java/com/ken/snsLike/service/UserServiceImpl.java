@@ -73,7 +73,7 @@ public class UserServiceImpl implements UserService {
 	private User _findUserById(UUID userId) {
 		Optional<User> found = userRepository.findById(userId);
 		if (found.isEmpty()) {
-			throw new NotFoundException(userId);
+			throw new NotFoundException("Not Found this ID = " + userId);
 		}
 		return found.get();
 	}

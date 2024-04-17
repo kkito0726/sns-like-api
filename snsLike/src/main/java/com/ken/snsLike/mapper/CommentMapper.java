@@ -9,14 +9,15 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class CommentMapper {
-    @Autowired
-    private ModelMapper modelMapper;
 
-    public CommentDto toDto(Comment entity) {
-        return modelMapper.map(entity, CommentDto.class);
-    }
+	@Autowired
+	private ModelMapper modelMapper;
 
-    public Comment createToEntity(CreateCommentDto dto) {
-        return  modelMapper.map(dto, Comment.class);
-    }
+	public CommentDto toDto(Comment entity) {
+		return modelMapper.map(entity, CommentDto.class);
+	}
+
+	public Comment createToEntity(CreateCommentDto dto) {
+		return modelMapper.map(dto, Comment.class);
+	}
 }

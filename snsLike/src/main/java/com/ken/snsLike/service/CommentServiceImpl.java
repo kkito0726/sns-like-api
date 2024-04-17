@@ -62,7 +62,7 @@ public class CommentServiceImpl implements CommentService {
         Optional<Comment> found = commentRepository.findById(commentId);
 
         if (found.isEmpty()) {
-            throw new NotFoundException(commentId);
+            throw new NotFoundException("Not Found this ID = " + commentId);
         }
 
         return found.get();
