@@ -23,7 +23,7 @@ public class UserController {
 	@Autowired
 	private UserService userService;
 
-	@GetMapping("/users")
+	@GetMapping("/user")
 	public ResponseEntity<List<UserDto>> getMethodName() {
 		return ResponseEntity.ok(userService.getUsers());
 	}

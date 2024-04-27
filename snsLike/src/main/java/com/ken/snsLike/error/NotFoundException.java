@@ -5,9 +5,6 @@ import org.springframework.http.HttpStatus;
 import java.util.UUID;
 
 public class NotFoundException extends HttpException {
-
-
-
 	public NotFoundException(String message) {
 		super(message, HttpStatus.NOT_FOUND);
 	}
