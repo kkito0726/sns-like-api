@@ -1,0 +1,16 @@
+spring:
+  application:
+    name: batch
+  datasource: 
+    driver-class-name: org.h2.Driver
+    url: jdbc:h2:mem:testdb
+    username: sa
+    password:
+sql:
+  init:
+    schema-locations: classpath:schema-all.sql
+
+h2:
+  console:
+    enabled: true
+    path: /h2-console

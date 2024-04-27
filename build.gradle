@@ -10,3 +10,24 @@ bootJar {
 jar {
     enabled = false
 }
+
+allprojects {
+    repositories {
+        mavenCentral()
+    }
+}
+
+subprojects {
+    apply plugin: 'java'
+    apply plugin: 'org.springframework.boot'
+    apply plugin: 'io.spring.dependency-management'
+
+    dependencies {
+        runtimeOnly 'com.h2database:h2'
+        compileOnly 'org.projectlombok:lombok'
+        annotationProcessor 'org.projectlombok:lombok'
+    }
+    tasks.named('test') {
+        useJUnitPlatform()
+    }
+}
